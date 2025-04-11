@@ -1,0 +1,2501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chemistry Virtual Lab</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<style>
+/* Root Variables */
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --accent-color: #e74c3c;
+    --text-color: #2c3e50;
+    --text-secondary: #7f8c8d;
+    --background-color: #f8f9fa;
+    --card-bg: #ffffff;
+    --border-color: #e0e0e0;
+    --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+/* Header Styles */
+.main-header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: var(--shadow);
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-header h1 {
+    font-size: 1.8rem;
+    margin: 0;
+}
+
+.main-header nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.main-header nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.main-header nav a:hover {
+    color: var(--secondary-color);
+}
+
+/* Hero Section */
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6rem 2rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.hero-content {
+    flex: 1;
+    padding-right: 2rem;
+}
+
+.hero-content h2 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: var(--text-secondary);
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: var(--secondary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.cta-button:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.molecule-animation {
+    font-size: 8rem;
+    color: var(--secondary-color);
+    animation: spin 10s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Section Headers */
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.section-header p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+/* Experiment Cards */
+.experiments-section {
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.experiment-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.experiment-card {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    text-align: center;
+}
+
+.experiment-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+}
+
+.experiment-card h3 {
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.experiment-card p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+.experiment-button {
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 0 auto;
+}
+
+.experiment-button:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
+/* Features Section */
+.features-section {
+    background-color: var(--card-bg);
+    padding: 4rem 2rem;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.feature-card {
+    text-align: center;
+    padding: 2rem;
+    background: var(--background-color);
+    border-radius: 10px;
+    transition: var(--transition);
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+}
+
+.feature-card i {
+    font-size: 2.5rem;
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.feature-card p {
+    color: var(--text-secondary);
+}
+
+/* About Section */
+.about-section {
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.about-content {
+    text-align: center;
+}
+
+.about-content h2 {
+    margin-bottom: 2rem;
+    color: var(--primary-color);
+}
+
+.about-content p {
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    color: var(--text-secondary);
+}
+
+.about-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 3rem;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+/* Footer */
+.main-footer {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 3rem 2rem 1rem;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.footer-section h3 {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.footer-section p {
+    color: #bdc3c7;
+    margin-bottom: 1rem;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-section a {
+    color: #bdc3c7;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.footer-section a:hover {
+    color: var(--secondary-color);
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.social-links a {
+    color: white;
+    font-size: 1.5rem;
+    transition: var(--transition);
+}
+
+.social-links a:hover {
+    color: var(--secondary-color);
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-section {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 8rem;
+    }
+
+    .hero-content {
+        padding-right: 0;
+        margin-bottom: 2rem;
+    }
+
+    .hero-content h2 {
+        font-size: 2.5rem;
+    }
+
+    .molecule-animation {
+        font-size: 6rem;
+    }
+
+    .main-header {
+        padding: 0.5rem 0;
+    }
+
+    .main-header nav ul {
+        gap: 1rem;
+    }
+
+    .about-stats {
+        flex-direction: column;
+        gap: 2rem;
+    }
+}
+
+/* Chemical Reaction Styles */
+.reaction-area {
+    margin: 2rem 0;
+    padding: 2rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    min-height: 300px;
+}
+
+.chemical-container {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 2rem;
+}
+
+.chemical {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    transition: all 0.5s ease;
+}
+
+.reaction-result {
+    padding: 1rem;
+    margin-top: 1rem;
+    border-radius: 8px;
+    transition: all 0.5s ease;
+}
+
+/* Reaction Type Styles */
+.neutralization {
+    background-color: #e3f2fd;
+    border: 2px solid #2196f3;
+}
+
+.precipitation {
+    background-color: #f5f5f5;
+    border: 2px solid #9e9e9e;
+}
+
+.redox {
+    background-color: #fff3e0;
+    border: 2px solid #ff9800;
+}
+
+.combustion {
+    background-color: #ffebee;
+    border: 2px solid #f44336;
+}
+
+.decomposition {
+    background-color: #e8f5e9;
+    border: 2px solid #4caf50;
+}
+
+.complex {
+    background-color: #f3e5f5;
+    border: 2px solid #9c27b0;
+}
+
+.addition {
+    background-color: #e0f7fa;
+    border: 2px solid #00bcd4;
+}
+
+.substitution {
+    background-color: #fff8e1;
+    border: 2px solid #ffc107;
+}
+
+.synthesis {
+    background-color: #fce4ec;
+    border: 2px solid #e91e63;
+}
+
+.catalysis {
+    background-color: #e8eaf6;
+    border: 2px solid #3f51b5;
+}
+
+/* Controls Styles */
+.controls {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+    flex-wrap: wrap;
+}
+
+.controls select {
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    min-width: 200px;
+}
+
+.reaction-details {
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.reaction-details h3 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+.reaction-details p {
+    margin: 0.5rem 0;
+    color: #34495e;
+}
+
+/* Animation Effects */
+@keyframes bubble {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@keyframes precipitate {
+    0% { opacity: 0; transform: translateY(-20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes colorChange {
+    0% { background-color: initial; }
+    100% { background-color: target; }
+}
+
+/* Add these classes to elements for animations */
+.bubbling {
+    animation: bubble 1s infinite;
+}
+
+.precipitating {
+    animation: precipitate 1s forwards;
+}
+
+.color-changing {
+    animation: colorChange 1s forwards;
+}
+
+/* Enhanced Reaction Styles */
+.reaction-steps {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 1rem 0;
+}
+
+.reaction-steps ol {
+    padding-left: 1.5rem;
+}
+
+.reaction-steps li {
+    margin: 0.5rem 0;
+    color: #2c3e50;
+}
+
+.reaction-info {
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 1rem 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.safety-info {
+    background-color: #fff3e0;
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 1rem 0;
+    border-left: 4px solid #ff9800;
+}
+
+.reaction-steps-animation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+}
+
+.show-reaction {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reaction-step {
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    width: 100%;
+    text-align: center;
+}
+
+.reaction-arrow {
+    font-size: 2rem;
+    color: #2196f3;
+    animation: pulse 1s infinite;
+}
+
+.reaction-observation {
+    background-color: #e3f2fd;
+    padding: 1rem;
+    border-radius: 8px;
+    width: 100%;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+/* Enhanced Reaction Type Styles */
+.neutralization {
+    background-color: #e3f2fd;
+    border: 2px solid #2196f3;
+}
+
+.neutralization .reaction-step {
+    background-color: #bbdefb;
+}
+
+.precipitation {
+    background-color: #f5f5f5;
+    border: 2px solid #9e9e9e;
+}
+
+.precipitation .reaction-step {
+    background-color: #e0e0e0;
+}
+
+.redox {
+    background-color: #fff3e0;
+    border: 2px solid #ff9800;
+}
+
+.redox .reaction-step {
+    background-color: #ffe0b2;
+}
+
+.combustion {
+    background-color: #ffebee;
+    border: 2px solid #f44336;
+}
+
+.combustion .reaction-step {
+    background-color: #ffcdd2;
+}
+
+.decomposition {
+    background-color: #e8f5e9;
+    border: 2px solid #4caf50;
+}
+
+.decomposition .reaction-step {
+    background-color: #c8e6c9;
+}
+
+/* Tooltip Styles */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: help;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 200px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -100px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .reaction-steps-animation {
+        flex-direction: column;
+    }
+    
+    .reaction-step {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+}
+
+/* Enhanced UI Styles */
+.reaction-selector {
+    margin-bottom: 1.5rem;
+}
+
+.reaction-selector label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+    font-weight: bold;
+}
+
+.reaction-selector select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid #3498db;
+    border-radius: 8px;
+    background-color: white;
+    font-size: 1rem;
+    color: #2c3e50;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.reaction-selector select:hover {
+    border-color: #2980b9;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+}
+
+.reaction-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.start-btn, .reset-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.start-btn {
+    background-color: #2ecc71;
+    color: white;
+}
+
+.start-btn:hover {
+    background-color: #27ae60;
+    transform: translateY(-2px);
+}
+
+.reset-btn {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.reset-btn:hover {
+    background-color: #c0392b;
+    transform: translateY(-2px);
+}
+
+.btn-icon {
+    font-size: 1.2rem;
+}
+
+/* Enhanced Reaction Cards */
+.reaction-info-card, .reaction-steps-card, .safety-card {
+    background-color: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.reaction-info-card:hover, .reaction-steps-card:hover, .safety-card:hover {
+    transform: translateY(-5px);
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.info-label {
+    font-weight: bold;
+    color: #7f8c8d;
+}
+
+.info-value {
+    color: #2c3e50;
+    font-size: 1.1rem;
+}
+
+/* Enhanced Steps List */
+.steps-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.step-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.step-item:hover {
+    background-color: #e9ecef;
+    transform: translateX(5px);
+}
+
+.step-number {
+    width: 30px;
+    height: 30px;
+    background-color: #3498db;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.step-content h4 {
+    margin: 0 0 0.5rem 0;
+    color: #2c3e50;
+}
+
+.step-content p {
+    margin: 0;
+    color: #7f8c8d;
+}
+
+/* Enhanced Safety Card */
+.safety-card {
+    background-color: #fff3e0;
+    border-left: 4px solid #ff9800;
+}
+
+.safety-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.safety-icon {
+    font-size: 1.5rem;
+}
+
+.safety-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.safety-list li {
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.safety-list li:before {
+    content: "⚠️";
+    position: absolute;
+    left: 0;
+}
+
+/* Enhanced Reaction Display */
+.reaction-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.reaction-component {
+    text-align: center;
+    padding: 1.5rem;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.reactants {
+    background-color: #e3f2fd;
+}
+
+.products {
+    background-color: #e8f5e9;
+}
+
+.chemical-formula {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-top: 0.5rem;
+}
+
+.reaction-arrow {
+    font-size: 2.5rem;
+    color: #3498db;
+    animation: pulse 1s infinite;
+}
+
+.observation-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.observation-text {
+    font-size: 1.2rem;
+    color: #2c3e50;
+    margin: 0;
+}
+
+.observation-icon {
+    font-size: 1.5rem;
+}
+
+/* Animations */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.show-reaction {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .reaction-buttons {
+        flex-direction: column;
+    }
+    
+    .reaction-display {
+        padding: 1rem;
+    }
+    
+    .chemical-formula {
+        font-size: 1.2rem;
+    }
+}
+
+/* Iteration Controls Styles */
+.iteration-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    padding: 1.5rem;
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.iteration-counter {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+    color: var(--text-color);
+}
+
+.iteration-label {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.iteration-number {
+    font-weight: 700;
+    color: var(--accent-color);
+    background: var(--accent-bg);
+    padding: 0.25rem 0.75rem;
+    border-radius: 6px;
+}
+
+.iteration-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.add-iteration-btn,
+.reset-iterations-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.add-iteration-btn {
+    background: var(--primary-color);
+    color: white;
+}
+
+.add-iteration-btn:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+.reset-iterations-btn {
+    background: var(--secondary-color);
+    color: white;
+}
+
+.reset-iterations-btn:hover {
+    background: var(--secondary-hover);
+    transform: translateY(-2px);
+}
+
+.btn-icon {
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+/* Iteration History Styles */
+.iterations-history {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.iterations-history h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.iterations-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.iteration-item {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.iteration-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.iteration-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.iteration-number {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.iteration-time {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.iteration-reaction {
+    color: var(--text-color);
+    font-size: 1rem;
+}
+
+/* Enhanced Chemical Process Styles */
+.reaction-container {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 2rem 0;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.reaction-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: var(--reaction-progress, 0%);
+    height: 4px;
+    background: var(--secondary-color);
+    transition: width 0.5s ease;
+}
+
+.reaction-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.reaction-type {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.reaction-equation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.reactants, .products {
+    padding: 1rem;
+    background: var(--background-color);
+    border-radius: 8px;
+    min-width: 200px;
+    text-align: center;
+}
+
+.reaction-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.mechanism, .observations, .safety, .stoichiometry {
+    background: var(--background-color);
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+.mechanism h4, .observations h4, .safety h4, .stoichiometry h4 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.observations ul {
+    list-style: none;
+    padding: 0;
+}
+
+.observations li {
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.observations li::before {
+    content: '•';
+    color: var(--secondary-color);
+    position: absolute;
+    left: 0;
+}
+
+.reaction-controls {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.start-btn, .reset-btn {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.start-btn {
+    background: var(--secondary-color);
+    color: white;
+}
+
+.start-btn:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+}
+
+.reset-btn {
+    background: var(--accent-color);
+    color: white;
+}
+
+.reset-btn:hover {
+    background: #c0392b;
+    transform: translateY(-2px);
+}
+
+.reaction-results {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: var(--background-color);
+    border-radius: 8px;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.temperature-change, .color-change, .ph-change {
+    margin-bottom: 1rem;
+}
+
+/* Enhanced Titration Styles */
+.titration-container {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 2rem 0;
+    box-shadow: var(--shadow);
+}
+
+.titration-setup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin: 2rem 0;
+    min-height: 300px;
+}
+
+.burette {
+    width: 60px;
+    height: 300px;
+    background: var(--background-color);
+    border-radius: 4px;
+    position: relative;
+    border: 2px solid var(--border-color);
+}
+
+.burette-fill {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 0%;
+    background: var(--secondary-color);
+    transition: height 0.5s ease;
+}
+
+.burette-scale {
+    position: absolute;
+    right: -30px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.burette-scale span {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.flask {
+    width: 120px;
+    height: 150px;
+    background: var(--background-color);
+    border-radius: 8px;
+    position: relative;
+    border: 2px solid var(--border-color);
+}
+
+.solution {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 0%;
+    background: var(--primary-color);
+    opacity: 0.3;
+    transition: height 0.5s ease;
+}
+
+.indicator {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 0%;
+    background: transparent;
+    transition: background-color 0.5s ease;
+}
+
+.titration-controls {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.solution-selector, .concentration-input, .volume-input, .indicator-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.solution-selector select, .concentration-input input, .volume-input input, .indicator-selector select {
+    padding: 0.8rem;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    background: white;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.solution-selector select:focus, .concentration-input input:focus, .volume-input input:focus, .indicator-selector select:focus {
+    border-color: var(--secondary-color);
+    outline: none;
+}
+
+.control-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.control-buttons button {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    background: var(--secondary-color);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.control-buttons button:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+}
+
+.titration-data {
+    margin-top: 2rem;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.ph-meter {
+    flex: 1;
+    height: 200px;
+    background: linear-gradient(to top, #ff0000, #ffff00, #00ff00);
+    border-radius: 8px;
+    position: relative;
+    border: 2px solid var(--border-color);
+}
+
+.ph-scale {
+    position: absolute;
+    right: -30px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.ph-scale span {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.ph-indicator {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: black;
+    transition: bottom 0.5s ease;
+}
+
+.data-display {
+    flex: 1;
+    padding: 1.5rem;
+    background: var(--background-color);
+    border-radius: 8px;
+}
+
+.data-display p {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.data-display span {
+    font-weight: 600;
+    color: var(--secondary-color);
+}
+
+/* Reaction Type Specific Styles */
+.neutralization {
+    border-left: 4px solid #3498db;
+}
+
+.precipitation {
+    border-left: 4px solid #2ecc71;
+}
+
+.redox {
+    border-left: 4px solid #e74c3c;
+}
+
+.combustion {
+    border-left: 4px solid #f39c12;
+}
+
+.decomposition {
+    border-left: 4px solid #9b59b6;
+}
+
+.complex {
+    border-left: 4px solid #1abc9c;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .reaction-equation {
+        flex-direction: column;
+    }
+    
+    .titration-setup {
+        flex-direction: column;
+    }
+    
+    .titration-data {
+        flex-direction: column;
+    }
+    
+    .ph-meter {
+        width: 100%;
+    }
+} 
+</style>
+
+
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <h1>Chemistry Lab</h1>
+            <nav>
+                <ul><li><a href="https://maithili2311.github.io/Homepage/">Home</a></li>
+                    <li><a href="https://maithili2311.github.io/Quiz/">Quiz</a></li>
+                    <li><a href="https://maithili2311.github.io/Formulas/">Formulas</a></li>
+                    <li><a href="https://maithili2311.github.io/FAQs/">FAQs</a></li>
+                    <li><a href="http://localhost/login/">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero-section">
+            <div class="hero-content">
+                <h2>Discover the Wonders of Chemistry</h2>
+                <p>Experience safe, interactive, and engaging chemistry experiments in our virtual laboratory environment.</p>
+                <a href="#experiments" class="cta-button">Start Exploring</a>
+            </div>
+            <div class="hero-image">
+                <div class="molecule-animation">
+                    <i class="fas fa-atom"></i>
+                </div>
+            </div>
+        </section>
+
+        <section id="experiments" class="experiments-section">
+            <div class="section-header">
+                <h2>Interactive Experiments</h2>
+                <p>Choose from our collection of virtual chemistry experiments</p>
+            </div>
+            <div class="experiment-grid">
+                <div class="experiment-card">
+                    <div class="card-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3>Titration</h3>
+                    <p>Master acid-base titration techniques in a safe virtual environment. Perfect for understanding neutralization reactions.</p>
+                    <button id="titration-btn" class="experiment-button">
+                        <i class="fas fa-play"></i>
+                        Start Experiment
+                    </button>
+                </div>
+                <div class="experiment-card">
+                    <div class="card-icon">
+                        <i class="fas fa-vial"></i>
+                    </div>
+                    <h3>Chemical Reactions</h3>
+                    <p>Explore various chemical reactions and observe their outcomes. Learn about reaction types and their characteristics.</p>
+                    <button id="reactions-btn" class="experiment-button">
+                        <i class="fas fa-play"></i>
+                        Start Experiment
+                    </button>
+                </div>
+                <div class="experiment-card">
+                    <div class="card-icon">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <h3>Molecular Structure</h3>
+                    <p>Visualize and interact with 3D molecular structures. Understand molecular geometry and bonding patterns.</p>
+                    <button id="molecules-btn" class="experiment-button">
+                        <i class="fas fa-play"></i>
+                        Start Experiment
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="features-section">
+            <div class="section-header">
+                <h2>Key Features</h2>
+                <p>What makes our virtual lab special</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Safe Learning</h3>
+                    <p>Conduct experiments without the risks of a physical lab</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Real-time Data</h3>
+                    <p>Get instant feedback and detailed analysis</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-book"></i>
+                    <h3>Comprehensive</h3>
+                    <p>Access detailed explanations and learning materials</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-sync"></i>
+                    <h3>Repeatable</h3>
+                    <p>Practice experiments multiple times to master concepts</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about-section">
+            <div class="about-content">
+                <h2>About Our Virtual Lab</h2>
+                <p>Our Chemistry Virtual Lab is designed to provide an immersive learning experience for students and enthusiasts. We combine cutting-edge technology with educational best practices to create a platform that makes learning chemistry engaging and effective.</p>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">3</span>
+                        <span class="stat-label">Experiments</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Safe</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Access</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Chemistry Virtual Lab</h3>
+                <p>Making chemistry education accessible and engaging for everyone.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#experiments">Experiments</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>Email: info@chemistryvirtuallab.com</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Chemistry Virtual Lab. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Function to start different experiments
+function startExperiment(experimentType) {
+    switch(experimentType) {
+        case 'titration':
+            startTitrationExperiment();
+            break;
+        case 'reactions':
+            startChemicalReactions();
+            break;
+        case 'molecules':
+            startMolecularViewer();
+            break;
+        default:
+            alert('Experiment not available yet!');
+    }
+}
+
+// Initialize event listeners when the DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Get all experiment buttons
+    const titrationBtn = document.getElementById('titration-btn');
+    const reactionsBtn = document.getElementById('reactions-btn');
+    const moleculesBtn = document.getElementById('molecules-btn');
+
+    // Add click event listeners
+    if (titrationBtn) {
+        titrationBtn.addEventListener('click', function() {
+            startExperiment('titration');
+        });
+    }
+
+    if (reactionsBtn) {
+        reactionsBtn.addEventListener('click', function() {
+            startExperiment('reactions');
+        });
+    }
+
+    if (moleculesBtn) {
+        moleculesBtn.addEventListener('click', function() {
+            startExperiment('molecules');
+        });
+    }
+});
+
+// Titration Experiment
+function startTitrationExperiment() {
+    const container = document.createElement('div');
+    container.className = 'titration-container';
+    
+    container.innerHTML = `
+        <h2>Acid-Base Titration</h2>
+        <div class="titration-setup">
+            <div class="burette">
+                <div class="burette-fill"></div>
+                <div class="burette-scale">
+                    <span>0 mL</span>
+                    <span>10 mL</span>
+                    <span>20 mL</span>
+                    <span>30 mL</span>
+                    <span>40 mL</span>
+                    <span>50 mL</span>
+                </div>
+            </div>
+            <div class="flask">
+                <div class="solution"></div>
+                <div class="indicator"></div>
+            </div>
+        </div>
+        
+        <div class="titration-controls">
+            <div class="solution-selector">
+                <label for="acid-select">Acid:</label>
+                <select id="acid-select">
+                    <option value="HCl">Hydrochloric Acid (HCl)</option>
+                    <option value="H2SO4">Sulfuric Acid (H2SO4)</option>
+                    <option value="CH3COOH">Acetic Acid (CH3COOH)</option>
+                </select>
+                
+                <label for="base-select">Base:</label>
+                <select id="base-select">
+                    <option value="NaOH">Sodium Hydroxide (NaOH)</option>
+                    <option value="KOH">Potassium Hydroxide (KOH)</option>
+                    <option value="NH4OH">Ammonium Hydroxide (NH4OH)</option>
+                </select>
+            </div>
+            
+            <div class="concentration-input">
+                <label for="acid-conc">Acid Concentration (M):</label>
+                <input type="number" id="acid-conc" value="0.1" step="0.01">
+                
+                <label for="base-conc">Base Concentration (M):</label>
+                <input type="number" id="base-conc" value="0.1" step="0.01">
+            </div>
+            
+            <div class="volume-input">
+                <label for="flask-volume">Flask Volume (mL):</label>
+                <input type="number" id="flask-volume" value="25" step="1">
+            </div>
+            
+            <div class="indicator-selector">
+                <label for="indicator">Indicator:</label>
+                <select id="indicator">
+                    <option value="phenolphthalein">Phenolphthalein</option>
+                    <option value="methyl-orange">Methyl Orange</option>
+                    <option value="bromothymol-blue">Bromothymol Blue</option>
+                </select>
+            </div>
+            
+            <div class="control-buttons">
+                <button onclick="addTitrant(1)">Add 1 mL</button>
+                <button onclick="addTitrant(5)">Add 5 mL</button>
+                <button onclick="addTitrant(10)">Add 10 mL</button>
+                <button onclick="resetTitration()">Reset</button>
+            </div>
+        </div>
+        
+        <div class="titration-data">
+            <div class="ph-meter">
+                <div class="ph-scale">
+                    <span>0</span>
+                    <span>7</span>
+                    <span>14</span>
+                </div>
+                <div class="ph-indicator"></div>
+            </div>
+            
+            <div class="data-display">
+                <p>Volume Added: <span id="volume-added">0</span> mL</p>
+                <p>Current pH: <span id="current-ph">7.0</span></p>
+                <p>Equivalence Point: <span id="equiv-point">N/A</span></p>
+            </div>
+        </div>
+    `;
+    
+    document.querySelector('#experiments').appendChild(container);
+}
+
+// Chemical Reactions Database with Enhanced Details
+const chemicalReactions = {
+    // Acid-Base Reactions
+    'HCl + NaOH': {
+        reactants: ['HCl', 'NaOH'],
+        products: ['NaCl', 'H2O'],
+        type: 'neutralization',
+        colorChange: 'clear to clear',
+        description: 'Strong acid-strong base neutralization',
+        mechanism: 'H+ + OH- → H2O',
+        enthalpy: -57.3, // kJ/mol
+        pHChange: '7 → 7 (neutral)',
+        safety: 'Wear gloves and goggles. Both solutions are corrosive.',
+        observations: [
+            'Temperature increases slightly',
+            'No visible color change',
+            'Solution remains clear'
+        ],
+        stoichiometry: {
+            molarRatio: '1:1',
+            concentration: '0.1M',
+            volume: '25mL'
+        }
+    },
+    'H2SO4 + 2NaOH': {
+        reactants: ['H2SO4', 'NaOH'],
+        products: ['Na2SO4', '2H2O'],
+        type: 'neutralization',
+        colorChange: 'clear to clear',
+        description: 'Sulfuric acid neutralization',
+        mechanism: 'H2SO4 + 2OH- → SO4^2- + 2H2O',
+        enthalpy: -111.7, // kJ/mol
+        pHChange: '1 → 7 (neutral)',
+        safety: 'Extreme caution! H2SO4 is highly corrosive.',
+        observations: [
+            'Significant temperature increase',
+            'No visible color change',
+            'Solution remains clear'
+        ],
+        stoichiometry: {
+            molarRatio: '1:2',
+            concentration: '0.1M',
+            volume: '25mL'
+        }
+    },
+    
+    // Precipitation Reactions
+    'AgNO3 + NaCl': {
+        reactants: ['AgNO3', 'NaCl'],
+        products: ['AgCl', 'NaNO3'],
+        type: 'precipitation',
+        colorChange: 'clear to white precipitate',
+        description: 'Silver chloride precipitation',
+        mechanism: 'Ag+ + Cl- → AgCl(s)',
+        ksp: 1.8e-10, // Solubility product constant
+        safety: 'Handle silver nitrate with care. Stains skin and clothing.',
+        observations: [
+            'Immediate formation of white precipitate',
+            'Precipitate settles to bottom',
+            'Solution above precipitate remains clear'
+        ],
+        stoichiometry: {
+            molarRatio: '1:1',
+            concentration: '0.1M',
+            volume: '25mL'
+        }
+    },
+    
+    // Redox Reactions
+    'Cu + 2AgNO3': {
+        reactants: ['Cu', 'AgNO3'],
+        products: ['Cu(NO3)2', '2Ag'],
+        type: 'redox',
+        colorChange: 'brown to blue with silver deposit',
+        description: 'Copper silver nitrate reaction',
+        mechanism: 'Cu(s) + 2Ag+ → Cu2+ + 2Ag(s)',
+        e0: 0.46, // Standard reduction potential
+        safety: 'Handle silver nitrate with care. Wear gloves.',
+        observations: [
+            'Copper metal dissolves',
+            'Solution turns blue',
+            'Silver crystals form on copper',
+            'Temperature increases slightly'
+        ],
+        stoichiometry: {
+            molarRatio: '1:2',
+            concentration: '0.1M',
+            volume: '25mL'
+        }
+    },
+    
+    // Combustion Reactions
+    'CH4 + 2O2': {
+        reactants: ['CH4', 'O2'],
+        products: ['CO2', '2H2O'],
+        type: 'combustion',
+        colorChange: 'colorless to flame',
+        description: 'Methane combustion',
+        mechanism: 'CH4 + 2O2 → CO2 + 2H2O',
+        enthalpy: -890.4, // kJ/mol
+        safety: 'Extreme caution! Flammable gas. Perform in fume hood.',
+        observations: [
+            'Blue flame produced',
+            'Heat released',
+            'Water vapor condenses on cold surface'
+        ],
+        stoichiometry: {
+            molarRatio: '1:2',
+            volume: '1L gas'
+        }
+    },
+    
+    // Decomposition Reactions
+    '2H2O2': {
+        reactants: ['H2O2'],
+        products: ['2H2O', 'O2'],
+        type: 'decomposition',
+        colorChange: 'clear to bubbles',
+        description: 'Hydrogen peroxide decomposition',
+        mechanism: '2H2O2 → 2H2O + O2',
+        catalyst: 'MnO2',
+        safety: 'Handle H2O2 with care. Can cause burns.',
+        observations: [
+            'Rapid gas evolution',
+            'Solution warms up',
+            'Bubbles form vigorously'
+        ],
+        stoichiometry: {
+            concentration: '3%',
+            volume: '50mL'
+        }
+    },
+    
+    // Complex Formation
+    'CuSO4 + 4NH3': {
+        reactants: ['CuSO4', 'NH3'],
+        products: ['[Cu(NH3)4]SO4'],
+        type: 'complex',
+        colorChange: 'blue to deep blue',
+        description: 'Copper ammonia complex formation'
+    },
+    'FeCl3 + 6KSCN': {
+        reactants: ['FeCl3', 'KSCN'],
+        products: ['K3[Fe(SCN)6]', '3KCl'],
+        type: 'complex',
+        colorChange: 'yellow to blood red',
+        description: 'Iron thiocyanate complex'
+    },
+    
+    // Organic Reactions
+    'C2H4 + Br2': {
+        reactants: ['C2H4', 'Br2'],
+        products: ['C2H4Br2'],
+        type: 'addition',
+        colorChange: 'brown to colorless',
+        description: 'Ethene bromination'
+    },
+    'C6H6 + HNO3': {
+        reactants: ['C6H6', 'HNO3'],
+        products: ['C6H5NO2', 'H2O'],
+        type: 'substitution',
+        colorChange: 'colorless to yellow',
+        description: 'Benzene nitration'
+    },
+    
+    // More reactions...
+    '2H2 + O2': {
+        reactants: ['H2', 'O2'],
+        products: ['2H2O'],
+        type: 'synthesis',
+        colorChange: 'colorless to flame',
+        description: 'Hydrogen oxygen synthesis'
+    },
+    'CaCO3 + 2HCl': {
+        reactants: ['CaCO3', 'HCl'],
+        products: ['CaCl2', 'H2O', 'CO2'],
+        type: 'acid-base',
+        colorChange: 'white to bubbles',
+        description: 'Calcium carbonate acid reaction'
+    },
+    '2Al + 3CuSO4': {
+        reactants: ['Al', 'CuSO4'],
+        products: ['Al2(SO4)3', '3Cu'],
+        type: 'redox',
+        colorChange: 'blue to colorless with red deposit',
+        description: 'Aluminum copper sulfate reaction'
+    },
+    'Na2CO3 + 2HCl': {
+        reactants: ['Na2CO3', 'HCl'],
+        products: ['2NaCl', 'H2O', 'CO2'],
+        type: 'acid-base',
+        colorChange: 'clear to bubbles',
+        description: 'Sodium carbonate acid reaction'
+    },
+    'Mg + 2HCl': {
+        reactants: ['Mg', 'HCl'],
+        products: ['MgCl2', 'H2'],
+        type: 'redox',
+        colorChange: 'silver to bubbles',
+        description: 'Magnesium hydrochloric acid reaction'
+    },
+    'Fe + CuSO4': {
+        reactants: ['Fe', 'CuSO4'],
+        products: ['FeSO4', 'Cu'],
+        type: 'redox',
+        colorChange: 'blue to green with red deposit',
+        description: 'Iron copper sulfate reaction'
+    },
+    '2KI + Cl2': {
+        reactants: ['KI', 'Cl2'],
+        products: ['2KCl', 'I2'],
+        type: 'redox',
+        colorChange: 'clear to brown',
+        description: 'Potassium iodide chlorine reaction'
+    },
+    'Na2S2O3 + 2HCl': {
+        reactants: ['Na2S2O3', 'HCl'],
+        products: ['2NaCl', 'S', 'SO2', 'H2O'],
+        type: 'decomposition',
+        colorChange: 'clear to yellow precipitate',
+        description: 'Sodium thiosulfate acid reaction'
+    },
+    'Cu + 4HNO3': {
+        reactants: ['Cu', 'HNO3'],
+        products: ['Cu(NO3)2', '2NO2', '2H2O'],
+        type: 'redox',
+        colorChange: 'brown to blue with brown gas',
+        description: 'Copper nitric acid reaction'
+    },
+    '2H2O': {
+        reactants: ['H2O'],
+        products: ['2H2', 'O2'],
+        type: 'electrolysis',
+        colorChange: 'clear to bubbles',
+        description: 'Water electrolysis'
+    },
+    'NH4Cl + NaOH': {
+        reactants: ['NH4Cl', 'NaOH'],
+        products: ['NaCl', 'NH3', 'H2O'],
+        type: 'acid-base',
+        colorChange: 'clear to gas',
+        description: 'Ammonium chloride base reaction'
+    },
+    'FeCl3 + 3NaOH': {
+        reactants: ['FeCl3', 'NaOH'],
+        products: ['Fe(OH)3', '3NaCl'],
+        type: 'precipitation',
+        colorChange: 'yellow to brown precipitate',
+        description: 'Iron(III) chloride base reaction'
+    },
+    'Pb(NO3)2 + 2NaCl': {
+        reactants: ['Pb(NO3)2', 'NaCl'],
+        products: ['PbCl2', '2NaNO3'],
+        type: 'precipitation',
+        colorChange: 'clear to white precipitate',
+        description: 'Lead chloride precipitation'
+    },
+    'AgNO3 + KBr': {
+        reactants: ['AgNO3', 'KBr'],
+        products: ['AgBr', 'KNO3'],
+        type: 'precipitation',
+        colorChange: 'clear to pale yellow precipitate',
+        description: 'Silver bromide precipitation'
+    },
+    'Ba(OH)2 + H2SO4': {
+        reactants: ['Ba(OH)2', 'H2SO4'],
+        products: ['BaSO4', '2H2O'],
+        type: 'neutralization',
+        colorChange: 'clear to white precipitate',
+        description: 'Barium hydroxide sulfuric acid reaction'
+    },
+    '2KMnO4 + 5H2O2 + 3H2SO4': {
+        reactants: ['KMnO4', 'H2O2', 'H2SO4'],
+        products: ['2MnSO4', 'K2SO4', '8H2O', '5O2'],
+        type: 'redox',
+        colorChange: 'purple to colorless with bubbles',
+        description: 'Potassium permanganate hydrogen peroxide reaction'
+    },
+    'Na2CO3 + CaCl2': {
+        reactants: ['Na2CO3', 'CaCl2'],
+        products: ['CaCO3', '2NaCl'],
+        type: 'precipitation',
+        colorChange: 'clear to white precipitate',
+        description: 'Sodium carbonate calcium chloride reaction'
+    },
+    'CuSO4 + Zn': {
+        reactants: ['CuSO4', 'Zn'],
+        products: ['ZnSO4', 'Cu'],
+        type: 'redox',
+        colorChange: 'blue to colorless with red deposit',
+        description: 'Copper sulfate zinc reaction'
+    },
+    '2H2O2 + MnO2': {
+        reactants: ['H2O2', 'MnO2'],
+        products: ['2H2O', 'O2'],
+        type: 'catalysis',
+        colorChange: 'clear to bubbles',
+        description: 'Hydrogen peroxide manganese dioxide catalysis'
+    },
+    'Fe + S': {
+        reactants: ['Fe', 'S'],
+        products: ['FeS'],
+        type: 'synthesis',
+        colorChange: 'gray and yellow to black',
+        description: 'Iron sulfide synthesis'
+    },
+    '2Na + Cl2': {
+        reactants: ['Na', 'Cl2'],
+        products: ['2NaCl'],
+        type: 'synthesis',
+        colorChange: 'silver and green to white',
+        description: 'Sodium chloride synthesis'
+    },
+    'CaO + H2O': {
+        reactants: ['CaO', 'H2O'],
+        products: ['Ca(OH)2'],
+        type: 'synthesis',
+        colorChange: 'white to white with heat',
+        description: 'Calcium hydroxide synthesis'
+    },
+    'NH3 + HCl': {
+        reactants: ['NH3', 'HCl'],
+        products: ['NH4Cl'],
+        type: 'synthesis',
+        colorChange: 'colorless gases to white smoke',
+        description: 'Ammonium chloride synthesis'
+    }
+};
+
+// Updated Chemical Reactions function with better iteration process
+function startChemicalReactions() {
+    const experimentContainer = document.createElement('div');
+    experimentContainer.className = 'experiment-container';
+    
+    // Create reaction selection interface
+    let reactionOptions = '';
+    for (const [reaction, details] of Object.entries(chemicalReactions)) {
+        reactionOptions += `<option value="${reaction}">${reaction} - ${details.description}</option>`;
+    }
+    
+    experimentContainer.innerHTML = `
+        <h2>Chemical Reactions</h2>
+        <div class="reaction-area">
+            <div class="chemical-container">
+                <div class="chemical" id="chemical1"></div>
+                <div class="chemical" id="chemical2"></div>
+            </div>
+            <div class="reaction-result"></div>
+        </div>
+        <div class="controls">
+            <div class="reaction-selector">
+                <label for="reaction-select">Choose a Reaction:</label>
+                <select id="reaction-select" onchange="updateReactionDetails()">
+                    <option value="">Select a Reaction</option>
+                    ${reactionOptions}
+                </select>
+            </div>
+            <div class="iteration-controls">
+                <div class="iteration-counter">
+                    <span class="iteration-label">Iteration:</span>
+                    <span id="iteration-number" class="iteration-number">1</span>
+                </div>
+                <div class="iteration-buttons">
+                    <button class="add-iteration-btn" onclick="addIteration()">
+                        <span class="btn-icon">+</span>
+                        Add Iteration
+                    </button>
+                    <button class="reset-iterations-btn" onclick="resetIterations()">
+                        <span class="btn-icon">↺</span>
+                        Reset All
+                    </button>
+                </div>
+            </div>
+            <div class="reaction-buttons">
+                <button class="start-btn" onclick="performReaction()">
+                    <span class="btn-icon">▶</span>
+                    Start Reaction
+                </button>
+                <button class="reset-btn" onclick="resetReaction()">
+                    <span class="btn-icon">↺</span>
+                    Reset
+                </button>
+            </div>
+        </div>
+        <div id="reaction-details" class="reaction-details">
+            <div class="reaction-info-card">
+                <h3>Reaction Information</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Type:</span>
+                        <span id="reaction-type" class="info-value"></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Description:</span>
+                        <span id="reaction-description" class="info-value"></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Expected Result:</span>
+                        <span id="expected-result" class="info-value"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="reaction-steps-card">
+                <h3>Step-by-Step Guide</h3>
+                <div class="steps-container">
+                    <ol id="reaction-steps-list" class="steps-list"></ol>
+                </div>
+            </div>
+            <div class="safety-card">
+                <h3>Safety Information</h3>
+                <div class="safety-content">
+                    <div class="safety-icon">⚠️</div>
+                    <p id="safety-warning"></p>
+                </div>
+            </div>
+        </div>
+        <div class="iterations-history">
+            <h3>Iteration History</h3>
+            <div id="iterations-list" class="iterations-list"></div>
+        </div>
+    `;
+    
+    document.querySelector('#experiments').appendChild(experimentContainer);
+}
+
+// Add new functions for iteration management
+let currentIteration = 1;
+const iterationsHistory = [];
+
+function addIteration() {
+    currentIteration++;
+    document.getElementById('iteration-number').textContent = currentIteration;
+    
+    // Add to history
+    const selectedReaction = document.getElementById('reaction-select').value;
+    if (selectedReaction) {
+        iterationsHistory.push({
+            iteration: currentIteration,
+            reaction: selectedReaction,
+            timestamp: new Date().toLocaleTimeString()
+        });
+        updateIterationsHistory();
+    }
+}
+
+function resetIterations() {
+    currentIteration = 1;
+    document.getElementById('iteration-number').textContent = currentIteration;
+    iterationsHistory.length = 0;
+    updateIterationsHistory();
+}
+
+function updateIterationsHistory() {
+    const iterationsList = document.getElementById('iterations-list');
+    iterationsList.innerHTML = '';
+    
+    iterationsHistory.forEach(iteration => {
+        const iterationItem = document.createElement('div');
+        iterationItem.className = 'iteration-item';
+        iterationItem.innerHTML = `
+            <div class="iteration-header">
+                <span class="iteration-number">Iteration ${iteration.iteration}</span>
+                <span class="iteration-time">${iteration.timestamp}</span>
+            </div>
+            <div class="iteration-reaction">${iteration.reaction}</div>
+        `;
+        iterationsList.appendChild(iterationItem);
+    });
+}
+
+// Updated function to show reaction details with better organization
+function updateReactionDetails() {
+    const selectedReaction = document.getElementById('reaction-select').value;
+    const details = chemicalReactions[selectedReaction];
+    
+    if (details) {
+        // Update basic information with better formatting
+        document.getElementById('reaction-type').textContent = details.type;
+        document.getElementById('reaction-description').textContent = details.description;
+        document.getElementById('expected-result').textContent = details.colorChange;
+        
+        // Generate step-by-step instructions with better formatting
+        const stepsList = document.getElementById('reaction-steps-list');
+        stepsList.innerHTML = '';
+        
+        // Add steps based on reaction type with better organization
+        switch(details.type) {
+            case 'neutralization':
+                stepsList.innerHTML = `
+                    <li class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Prepare the Acid Solution</h4>
+                            <p>Take a clean beaker and add the acid solution</p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Add Indicator</h4>
+                            <p>Add a few drops of phenolphthalein indicator</p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Add Base Solution</h4>
+                            <p>Slowly add the base solution while stirring</p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Observe Color Change</h4>
+                            <p>Stop when the solution changes color</p>
+                        </div>
+                    </li>
+                `;
+                break;
+            // Add more cases for other reaction types with similar formatting
+        }
+        
+        // Add safety information with better formatting
+        const safetyWarning = document.getElementById('safety-warning');
+        switch(details.type) {
+            case 'neutralization':
+                safetyWarning.innerHTML = `
+                    <ul class="safety-list">
+                        <li>Wear safety goggles and gloves</li>
+                        <li>Add acids to water, not water to acids</li>
+                        <li>Work in a well-ventilated area</li>
+                        <li>Have a neutralizing agent ready</li>
+                    </ul>
+                `;
+                break;
+            // Add more safety warnings for other reaction types
+        }
+    }
+}
+
+// Updated function to perform reaction with better visual feedback
+function performReaction() {
+    const selectedReaction = document.getElementById('reaction-select').value;
+    const details = chemicalReactions[selectedReaction];
+    
+    if (details) {
+        const resultDiv = document.querySelector('.reaction-result');
+        resultDiv.innerHTML = '';
+        
+        // Create a more visually appealing reaction display
+        const reactionDisplay = document.createElement('div');
+        reactionDisplay.className = 'reaction-display';
+        
+        // Add reactants with better styling
+        const reactantsDiv = document.createElement('div');
+        reactantsDiv.className = 'reaction-component reactants';
+        reactantsDiv.innerHTML = `
+            <h4>Reactants</h4>
+            <div class="chemical-formula">
+                ${details.reactants.join(' + ')}
+            </div>
+        `;
+        reactionDisplay.appendChild(reactantsDiv);
+        
+        // Add reaction arrow with animation
+        const arrowDiv = document.createElement('div');
+        arrowDiv.className = 'reaction-arrow';
+        arrowDiv.innerHTML = '→';
+        reactionDisplay.appendChild(arrowDiv);
+        
+        // Add products with better styling
+        const productsDiv = document.createElement('div');
+        productsDiv.className = 'reaction-component products';
+        productsDiv.innerHTML = `
+            <h4>Products</h4>
+            <div class="chemical-formula">
+                ${details.products.join(' + ')}
+            </div>
+        `;
+        reactionDisplay.appendChild(productsDiv);
+        
+        // Add reaction details
+        const reactionDetails = document.createElement('div');
+        reactionDetails.className = 'reaction-details';
+        
+        // Add mechanism
+        const mechanismDiv = document.createElement('div');
+        mechanismDiv.className = 'mechanism';
+        mechanismDiv.innerHTML = `
+            <h4>Mechanism</h4>
+            <p>${details.mechanism}</p>
+        `;
+        reactionDetails.appendChild(mechanismDiv);
+        
+        // Add observations
+        const observationsDiv = document.createElement('div');
+        observationsDiv.className = 'observations';
+        const observationsList = document.createElement('ul');
+        details.observations.forEach(obs => {
+            const observationItem = document.createElement('li');
+            observationItem.textContent = obs;
+            observationsList.appendChild(observationItem);
+        });
+        observationsDiv.appendChild(observationsList);
+        
+        // Add safety information
+        const safetyDiv = document.createElement('div');
+        safetyDiv.className = 'safety';
+        safetyDiv.innerHTML = `
+            <h4>Safety Information</h4>
+            <p>${details.safety}</p>
+        `;
+        reactionDetails.appendChild(safetyDiv);
+        
+        // Add stoichiometry
+        const stoichiometryDiv = document.createElement('div');
+        stoichiometryDiv.className = 'stoichiometry';
+        stoichiometryDiv.innerHTML = `
+            <h4>Stoichiometry</h4>
+            <p>Molar Ratio: ${details.stoichiometry.molarRatio}</p>
+            <p>Concentration: ${details.stoichiometry.concentration}</p>
+            <p>Volume: ${details.stoichiometry.volume}</p>
+        `;
+        reactionDetails.appendChild(stoichiometryDiv);
+        
+        // Add reaction details to reaction display
+        reactionDisplay.appendChild(reactionDetails);
+        
+        // Add reaction controls
+        const controlsDiv = document.createElement('div');
+        controlsDiv.className = 'reaction-controls';
+        const startBtn = document.createElement('button');
+        startBtn.className = 'start-btn';
+        startBtn.textContent = 'Start Reaction';
+        startBtn.onclick = () => startReaction(selectedReaction);
+        controlsDiv.appendChild(startBtn);
+        
+        const resetBtn = document.createElement('button');
+        resetBtn.className = 'reset-btn';
+        resetBtn.textContent = 'Reset';
+        resetBtn.onclick = () => resetReaction(selectedReaction);
+        controlsDiv.appendChild(resetBtn);
+        
+        // Add reaction to reaction area
+        const reactionArea = document.querySelector('.reaction-area');
+        reactionArea.appendChild(reactionDisplay);
+    }
+}
+
+function startReaction(reactionKey) {
+    const reaction = chemicalReactions[reactionKey];
+    const container = document.querySelector(`.reaction-container.${reaction.type}`);
+    
+    // Add animation classes
+    container.classList.add('reaction-active');
+    
+    // Simulate reaction progress
+    let progress = 0;
+    const interval = setInterval(() => {
+        progress += 10;
+        container.style.setProperty('--reaction-progress', `${progress}%`);
+        
+        if (progress >= 100) {
+            clearInterval(interval);
+            showReactionResults(reaction);
+        }
+    }, 500);
+}
+
+function showReactionResults(reaction) {
+    const results = document.createElement('div');
+    results.className = 'reaction-results';
+    
+    results.innerHTML = `
+        <h4>Reaction Results</h4>
+        <div class="temperature-change">
+            <p>Temperature Change: ${reaction.enthalpy ? `${reaction.enthalpy} kJ/mol` : 'Measured'}</p>
+        </div>
+        <div class="color-change">
+            <p>Color Change: ${reaction.colorChange}</p>
+        </div>
+        <div class="ph-change">
+            <p>pH Change: ${reaction.pHChange || 'N/A'}</p>
+        </div>
+    `;
+    
+    document.querySelector('.reaction-container').appendChild(results);
+}
+
+function resetReaction(reactionKey) {
+    const container = document.querySelector(`.reaction-container.${chemicalReactions[reactionKey].type}`);
+    container.remove();
+}
+    </script>
+</body>
+</html> 
